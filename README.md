@@ -17,7 +17,7 @@ Aplicação web que simula a catraca de um ônibus com leitor de cartão. O usu�
 ## Stack
 
 | Camada | Tecnologia |
-| Backend | Python + FastAPI (sujeito a mudanças) |
+| Backend | Python + FastAPI (sujeito a mudanças)|
 | Banco | PostgreSQL |
 | Frontend | A definir |
 
