@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from . import models  # noqa: F401
 from .database import Base, engine, get_db
 
-from .routers import catraca
+from .routers import cartoes, catraca
 
 
 @asynccontextmanager
@@ -17,6 +17,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="ViaPass", lifespan=lifespan)
 app.include_router(catraca.router)
+app.include_router(cartoes.router)
 
 
 @app.get("/health")
