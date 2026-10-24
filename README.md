@@ -75,7 +75,7 @@ Exemplo de resposta de `POST /catraca/validar`:
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/marcoladashub/ViaPass.git
+git clone https://github.com/marcosplc/ViaPass.git
 cd ViaPass
 ```
 
@@ -155,5 +155,5 @@ As tabelas são criadas automaticamente na primeira vez que a API sobe.
 
 ## Desenvolvedores
 
-- [Marcos Costa](https://github.com/marcoladashub)
+- [Marcos Costa](https://github.com/marcosplc)
 - [Enzo Festa](https://github.com/festa-enzo)
