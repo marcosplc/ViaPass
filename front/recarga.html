@@ -1,201 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ViaPass - Recarga</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViaPass - Recarga</title>
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f2f4f7;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f4f7;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .card {
-      background: #ffffff;
-      width: 100%;
-      max-width: 420px;
-      padding: 28px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
+.card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
 
-    h1 { margin: 0 0 20px; font-size: 22px; color: #1f2937; }
+h1 { margin: 0 0 20px; font-size: 22px; color: #1f2937; }
 
-    label { display: block; margin: 16px 0 6px; font-size: 14px; color: #4b5563; }
+label { display: block; margin: 16px 0 6px; font-size: 14px; color: #4b5563; }
 
-    .linha { display: flex; gap: 8px; }
+.linha { display: flex; gap: 8px; }
 
-    input {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
 
-    button {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 8px;
-      background: #39da77;
-      color: #f0eaea;
-      font-size: 15px;
-      cursor: pointer;
-    }
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #39da77;
+    color: #f0eaea;
+    font-size: 15px;
+    cursor: pointer;
+}
 
-    button:hover { background: #33bd68; }
+button:hover { background: #33bd68; }
 
-    .dados {
-      margin-top: 20px;
-      padding: 14px;
-      background: #f8fafc;
-      border-radius: 8px;
-      line-height: 1.6;
-    }
+.dados {
+    margin-top: 20px;
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 8px;
+    line-height: 1.6;
+}
 
-    .dados p { margin: 0; }
+.dados p { margin: 0; }
 
-    .mensagem { margin-top: 18px; padding: 10px; border-radius: 8px; font-size: 14px; }
-    .sucesso { background: #dcfce7; color: #166534; }
-    .erro { background: #fee2e2; color: #991b1b; }
-  </style>
+.mensagem { margin-top: 18px; padding: 10px; border-radius: 8px; font-size: 14px; }
+.sucesso { background: #dcfce7; color: #166534; }
+.erro { background: #fee2e2; color: #991b1b; }
+</style>
 </head>
 <body>
-  <main class="card">
-    <h1>Recarga de cartão</h1>
+<main class="card">
+<h1>Recarga de cartão</h1>
 
-    <label for="cartaoId">Número do cartão</label>
+<label for="cartaoId">Número do cartão</label>
+<div class="linha">
+    <input type="number" id="cartaoId" min="1" placeholder="Ex: 1">
+    <button id="btnConsultar">Consultar</button>
+</div>
+
+<div id="dadosCartao" class="dados" hidden>
+    <p><strong id="nome"></strong></p>
+    <p>Saldo: <span id="saldo"></span></p>
+    <p>Status: <span id="status"></span></p>
+</div>
+
+<div id="areaRecarga" hidden>
+    <label for="valor">Valor da recarga (R$)</label>
     <div class="linha">
-      <input type="number" id="cartaoId" min="1" placeholder="Ex: 1">
-      <button id="btnConsultar">Consultar</button>
+    <input type="number" id="valor" min="0.01" step="0.01" placeholder="Ex: 10.00">
+    <button id="btnRecarregar">Recarregar</button>
     </div>
+</div>
 
-    <div id="dadosCartao" class="dados" hidden>
-      <p><strong id="nome"></strong></p>
-      <p>Saldo: <span id="saldo"></span></p>
-      <p>Status: <span id="status"></span></p>
-    </div>
+<p id="mensagem" class="mensagem" hidden></p>
+</main>
 
-    <div id="areaRecarga" hidden>
-      <label for="valor">Valor da recarga (R$)</label>
-      <div class="linha">
-        <input type="number" id="valor" min="0.01" step="0.01" placeholder="Ex: 10.00">
-        <button id="btnRecarregar">Recarregar</button>
-      </div>
-    </div>
+<script>
+// Endereço da API. Se a porta ou o endereço mudarem, ajuste só aqui.
+const API_URL = "http://localhost:8000";
 
-    <p id="mensagem" class="mensagem" hidden></p>
-  </main>
+const campoCartao = document.getElementById("cartaoId");
+const campoValor = document.getElementById("valor");
+const blocoDados = document.getElementById("dadosCartao");
+const blocoRecarga = document.getElementById("areaRecarga");
+const textoNome = document.getElementById("nome");
+const textoSaldo = document.getElementById("saldo");
+const textoStatus = document.getElementById("status");
+const mensagem = document.getElementById("mensagem");
 
-  <script>
-    // Endereço da API. Se a porta ou o endereço mudarem, ajuste só aqui.
-    const API_URL = "http://localhost:8000";
+// Transforma 14.6 em "R$ 14,60".
+function moeda(valor) {
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
 
-    const campoCartao = document.getElementById("cartaoId");
-    const campoValor = document.getElementById("valor");
-    const blocoDados = document.getElementById("dadosCartao");
-    const blocoRecarga = document.getElementById("areaRecarga");
-    const textoNome = document.getElementById("nome");
-    const textoSaldo = document.getElementById("saldo");
-    const textoStatus = document.getElementById("status");
-    const mensagem = document.getElementById("mensagem");
+function mostrarMensagem(texto, tipo) {
+    mensagem.textContent = texto;
+    mensagem.className = "mensagem " + tipo;
+    mensagem.hidden = false;
+}
 
-    // Transforma 14.6 em "R$ 14,60".
-    function moeda(valor) {
-      return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+function esconderCartao() {
+    blocoDados.hidden = true;
+    blocoRecarga.hidden = true;
+}
+
+// Pergunta à API quem é o cartão e quanto tem de saldo.
+async function consultar() {
+    const id = campoCartao.value;
+    if (!id) {
+    mostrarMensagem("Digite o número do cartão.", "erro");
+    return;
     }
 
-    function mostrarMensagem(texto, tipo) {
-      mensagem.textContent = texto;
-      mensagem.className = "mensagem " + tipo;
-      mensagem.hidden = false;
-    }
+    try {
+    const resposta = await fetch(`${API_URL}/cartoes/${id}`);
 
-    function esconderCartao() {
-      blocoDados.hidden = true;
-      blocoRecarga.hidden = true;
-    }
-
-    // Pergunta à API quem é o cartão e quanto tem de saldo.
-    async function consultar() {
-      const id = campoCartao.value;
-      if (!id) {
-        mostrarMensagem("Digite o número do cartão.", "erro");
-        return;
-      }
-
-      try {
-        const resposta = await fetch(`${API_URL}/cartoes/${id}`);
-
-        if (resposta.status === 404) {
-          esconderCartao();
-          mostrarMensagem("Cartão não encontrado.", "erro");
-          return;
-        }
-        if (!resposta.ok) {
-          throw new Error("Resposta inesperada da API");
-        }
-
-        const dados = await resposta.json();
-        textoNome.textContent = dados.nome;
-        textoSaldo.textContent = moeda(dados.saldo);
-        textoStatus.textContent = dados.status;
-        blocoDados.hidden = false;
-        blocoRecarga.hidden = false;
-        mensagem.hidden = true;
-      } catch (erro) {
+    if (resposta.status === 404) {
         esconderCartao();
-        mostrarMensagem("Não foi possível falar com a API. Ela está rodando?", "erro");
-      }
-    }
-
-    // Pede à API para somar o valor ao saldo do cartão.
-    async function recarregar() {
-      const id = campoCartao.value;
-      const valor = parseFloat(campoValor.value);
-
-      if (!valor || valor <= 0) {
-        mostrarMensagem("Digite um valor maior que zero.", "erro");
+        mostrarMensagem("Cartão não encontrado.", "erro");
         return;
-      }
-
-      try {
-        const resposta = await fetch(`${API_URL}/cartoes/${id}/recarga`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ valor: valor }),
-        });
-
-        if (resposta.status === 404) {
-          mostrarMensagem("Cartão não encontrado.", "erro");
-          return;
-        }
-        if (resposta.status === 422) {
-          mostrarMensagem("Valor inválido. Use um valor positivo com até duas casas decimais.", "erro");
-          return;
-        }
-        if (!resposta.ok) {
-          throw new Error("Resposta inesperada da API");
-        }
-
-        const dados = await resposta.json();
-        textoSaldo.textContent = moeda(dados.saldo_atual);
-        campoValor.value = "";
-        mostrarMensagem(`Recarga de ${moeda(dados.valor_recarregado)} realizada com sucesso.`, "sucesso");
-      } catch (erro) {
-        mostrarMensagem("Não foi possível falar com a API. Ela está rodando?", "erro");
-      }
+    }
+    if (!resposta.ok) {
+        throw new Error("Resposta inesperada da API");
     }
 
-    document.getElementById("btnConsultar").addEventListener("click", consultar);
-    document.getElementById("btnRecarregar").addEventListener("click", recarregar);
-  </script>
+    const dados = await resposta.json();
+    textoNome.textContent = dados.nome;
+    textoSaldo.textContent = moeda(dados.saldo);
+    textoStatus.textContent = dados.status;
+    blocoDados.hidden = false;
+    blocoRecarga.hidden = false;
+    mensagem.hidden = true;
+    } catch (erro) {
+    esconderCartao();
+    mostrarMensagem("Não foi possível falar com a API. Ela está rodando?", "erro");
+    }
+}
+
+// Pede à API para somar o valor ao saldo do cartão.
+async function recarregar() {
+    const id = campoCartao.value;
+    const valor = parseFloat(campoValor.value);
+
+    if (!valor || valor <= 0) {
+    mostrarMensagem("Digite um valor maior que zero.", "erro");
+    return;
+    }
+
+    try {
+    const resposta = await fetch(`${API_URL}/cartoes/${id}/recarga`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ valor: valor }),
+    });
+
+    if (resposta.status === 404) {
+        mostrarMensagem("Cartão não encontrado.", "erro");
+        return;
+    }
+    if (resposta.status === 422) {
+        mostrarMensagem("Valor inválido. Use um valor positivo com até duas casas decimais.", "erro");
+        return;
+    }
+    if (!resposta.ok) {
+        throw new Error("Resposta inesperada da API");
+    }
+
+    const dados = await resposta.json();
+    textoSaldo.textContent = moeda(dados.saldo_atual);
+    campoValor.value = "";
+    mostrarMensagem(`Recarga de ${moeda(dados.valor_recarregado)} realizada com sucesso.`, "sucesso");
+    } catch (erro) {
+    mostrarMensagem("Não foi possível falar com a API. Ela está rodando?", "erro");
+    }
+}
+
+document.getElementById("btnConsultar").addEventListener("click", consultar);
+document.getElementById("btnRecarregar").addEventListener("click", recarregar);
+</script>
 </body>
 </html>
