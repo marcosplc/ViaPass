@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaPass | Usuários</title>
+
+    <link rel="stylesheet" href="css/usuario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+      <a class="brand" href="home.html">
+            <span class="brand-mark">
+            <i class="fa-solid fa-bus-simple"></i>
+            </span>
+
+            <span class="brand-name">
+            Via<span>Pass</span>
+            <small>TRANSPORTE INTELIGENTE</small>
+            </span>
+        </a>
+
+            <nav class="menu">
+                <a href="home.html"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="catraca.html"><i class="fa-solid fa-ticket"></i> Simular catraca</a>
+                <a href="recarga.html"><i class="fa-solid fa-wallet"></i> Recarga de créditos</a>
+                <a href="cartoes.html"><i class="fa-solid fa-credit-card"></i> Cartões</a>
+                <a href="usuarios.html" class="active"><i class="fa-solid fa-users"></i> Usuários</a>
+                <a href="historico.html"><i class="fa-solid fa-clock-rotate-left"></i> Histórico de viagens</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Central de ajuda</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div class="page-title">
+                    <h1>Usuários</h1>
+                    <p>Gerencie os usuários cadastrados no ViaPass.</p>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-avatar">EF</div>
+                    <div class="user-info">
+                        <strong>Enzo Festa</strong>
+                        <span>Administrador</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </header>
+
+            <section class="content-section">
+
+                <div class="section-header">
+                    <div>
+                        <h2>Usuários cadastrados</h2>
+                        <p>Consulte, adicione e gerencie usuários do sistema.</p>
+                    </div>
+
+                    <button class="primary-button" id="btnAdicionarUsuario">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Adicionar usuário
+                    </button>
+                </div>
+
+                <div class="filters">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="buscarUsuario" placeholder="Buscar usuário...">
+                    </div>
+
+                    <select id="filtroTipoUsuario">
+                        <option value="">Todos os tipos</option>
+                        <option value="passageiro">Passageiro</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+
+                    <select id="filtroStatusUsuario">
+                        <option value="">Todos os status</option>
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Tipo de usuário</th>
+                                <th>Cartão vinculado</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaUsuarios">
+                            <!-- O JavaScript preencherá esta tabela futuramente -->
+                        </tbody>
+                    </table>
+
+                    <div class="empty-state" id="usuariosVazio">
+                        <i class="fa-solid fa-users"></i>
+                        <h3>Nenhum usuário encontrado</h3>
+                        <p>Os usuários cadastrados aparecerão aqui.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

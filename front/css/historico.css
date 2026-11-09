@@ -1,0 +1,73 @@
+@import url("cartoes.css");
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px 34px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: var(--blue);
+  font-size: 19px;
+  box-shadow: 0 6px 18px rgba(52, 104, 245, .28);
+  text-decoration: none;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.8px;
+  line-height: 1.05;
+  text-decoration: none;
+}
+
+.brand-name span {
+  color: #79a0ff;
+  text-decoration: none;
+}
+
+.brand-name small {
+  display: block;
+  margin-top: 6px;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.35px;
+  color: #8190ac;
+  text-decoration: none;
+}
+
+.filters {
+    align-items: center;
+}
+
+#filtroData {
+    min-width: 160px;
+}
+
+.table-container table {
+    min-width: 800px;
+}
+
+.table-container td:first-child {
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #filtroData,
+    #filtroResultado {
+        width: 100%;
+    }
+}
