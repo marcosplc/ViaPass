@@ -1,0 +1,248 @@
+@import url("cartoes.css");
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px 34px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: var(--blue);
+  font-size: 19px;
+  box-shadow: 0 6px 18px rgba(52, 104, 245, .28);
+  text-decoration: none;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.8px;
+  line-height: 1.05;
+  text-decoration: none;
+}
+
+.brand-name span {
+  color: #79a0ff;
+  text-decoration: none;
+}
+
+.brand-name small {
+  display: block;
+  margin-top: 6px;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.35px;
+  color: #8190ac;
+  text-decoration: none;
+}
+
+
+.simulation-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 26px;
+    align-items: stretch;
+}
+
+.turnstile-card,
+.validation-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.turnstile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.turnstile-header i {
+    color: var(--blue);
+    font-size: 24px;
+}
+
+.turnstile-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.turnstile-machine {
+    width: 260px;
+    height: 300px;
+    background: linear-gradient(145deg, #263a5d, #101b35);
+    border-radius: 20px;
+    padding: 22px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(16, 27, 53, 0.18);
+}
+
+.machine-screen {
+    height: 100px;
+    background: #eaf0ff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.machine-screen i {
+    font-size: 28px;
+}
+
+.card-reader {
+    margin: 24px auto;
+    width: 120px;
+    height: 65px;
+    background: #0b1428;
+    border: 2px solid #52698f;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #8db3ff;
+}
+
+.card-reader i {
+    font-size: 20px;
+}
+
+.card-reader span {
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.turnstile-bar {
+    position: absolute;
+    right: -75px;
+    top: 190px;
+    width: 100px;
+    height: 12px;
+    background: #b8c5d9;
+    border-radius: 10px;
+    transform: rotate(-25deg);
+}
+
+.turnstile-instructions {
+    text-align: center;
+}
+
+.turnstile-instructions h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.turnstile-instructions p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 450px;
+    margin: auto;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.panel-header > i {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf0ff;
+    color: var(--blue);
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.panel-header h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.panel-header p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    background: white;
+    color: var(--text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--blue);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.validation-result {
+    margin-top: 22px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+@media (max-width: 850px) {
+    .simulation-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .turnstile-card,
+    .validation-panel {
+        padding: 18px;
+    }
+
+    .turnstile-machine {
+        transform: scale(0.85);
+    }
+}

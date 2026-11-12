@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaPass | Simular Catraca</title>
+
+    <link rel="stylesheet" href="css/catraca.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+            <a class="brand" href="home.html">
+                <span class="brand-mark">
+                <i class="fa-solid fa-bus-simple"></i>
+                </span>
+
+                <span class="brand-name">
+                Via<span>Pass</span>
+                <small>TRANSPORTE INTELIGENTE</small>
+                </span>
+            </a>
+
+
+            <nav class="menu">
+                <a href="home.html"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="catraca.html" class="active"><i class="fa-solid fa-ticket"></i> Simular catraca</a>
+                <a href="recarga.html"><i class="fa-solid fa-wallet"></i> Recarga de créditos</a>
+                <a href="cartoes.html"><i class="fa-solid fa-credit-card"></i> Cartões</a>
+                <a href="usuarios.html"><i class="fa-solid fa-users"></i> Usuários</a>
+                <a href="historico.html"><i class="fa-solid fa-clock-rotate-left"></i> Histórico de viagens</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Central de ajuda</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div class="page-title">
+                    <h1>Simulação da catraca</h1>
+                    <p>Simule a validação de um cartão de transporte.</p>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-avatar">EF</div>
+                    <div class="user-info">
+                        <strong>Enzo Festa</strong>
+                        <span>Administrador</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </header>
+
+            <section class="content-section">
+
+                <div class="section-header">
+                    <div>
+                        <h2>Leitor de cartões</h2>
+                        <p>Aproxime ou informe o cartão para iniciar a validação.</p>
+                    </div>
+                </div>
+
+                <div class="simulation-container">
+
+                    <div class="turnstile-card">
+
+                        <div class="turnstile-header">
+                            <i class="fa-solid fa-bus"></i>
+                            <span>ViaPass</span>
+                        </div>
+
+                        <div class="turnstile-visual">
+                            <div class="turnstile-machine">
+                                <div class="machine-screen" id="statusCatraca">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                    <span>Aguardando cartão</span>
+                                </div>
+
+                                <div class="card-reader">
+                                    <i class="fa-solid fa-wifi"></i>
+                                    <span>LEITOR NFC</span>
+                                </div>
+
+                                <div class="turnstile-bar"></div>
+                            </div>
+                        </div>
+
+                        <div class="turnstile-instructions">
+                            <h3>Validação de passagem</h3>
+                            <p>Informe o número do cartão para verificar o saldo e liberar ou recusar a passagem.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-panel">
+
+                        <div class="panel-header">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div>
+                                <h3>Validador</h3>
+                                <p>Validação do cartão</p>
+                            </div>
+                        </div>
+
+                        <form id="formValidarCartao">
+
+                            <div class="form-group">
+                                <label for="numeroCartao">Número do cartão</label>
+                                <input
+                                    type="text"
+                                    id="numeroCartao"
+                                    name="numeroCartao"
+                                    placeholder="Digite ou aproxime o cartão"
+                                    required
+                                >
+                            </div>
+
+                            <button type="submit" class="primary-button full-width">
+                                <i class="fa-solid fa-check"></i>
+                                Validar passagem
+                            </button>
+
+                        </form>
+
+                        <div class="validation-result" id="resultadoValidacao">
+                            <!-- Resultado da validação será exibido pelo JavaScript -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

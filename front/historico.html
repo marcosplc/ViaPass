@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaPass | Histórico de Viagens</title>
+
+    <link rel="stylesheet" href="css/historico.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+            <a class="brand" href="home.html">
+                <span class="brand-mark">
+                <i class="fa-solid fa-bus-simple"></i>
+                </span>
+
+                <span class="brand-name">
+                Via<span>Pass</span>
+                <small>TRANSPORTE INTELIGENTE</small>
+                </span>
+            </a>
+
+
+            <nav class="menu">
+                <a href="home.html"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="catraca.html"><i class="fa-solid fa-ticket"></i> Simular catraca</a>
+                <a href="recarga.html"><i class="fa-solid fa-wallet"></i> Recarga de créditos</a>
+                <a href="cartoes.html"><i class="fa-solid fa-credit-card"></i> Cartões</a>
+                <a href="usuarios.html"><i class="fa-solid fa-users"></i> Usuários</a>
+                <a href="historico.html" class="active"><i class="fa-solid fa-clock-rotate-left"></i> Histórico de viagens</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Central de ajuda</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div class="page-title">
+                    <h1>Histórico de viagens</h1>
+                    <p>Consulte as movimentações e passagens realizadas.</p>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-avatar">EF</div>
+                    <div class="user-info">
+                        <strong>Enzo Festa</strong>
+                        <span>Administrador</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </header>
+
+            <section class="content-section">
+
+                <div class="section-header">
+                    <div>
+                        <h2>Registro de viagens</h2>
+                        <p>Acompanhe as validações de passagem realizadas pela catraca.</p>
+                    </div>
+                </div>
+
+                <div class="filters">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="buscarViagem" placeholder="Buscar por cartão ou usuário...">
+                    </div>
+
+                    <select id="filtroResultado">
+                        <option value="">Todos os resultados</option>
+                        <option value="aprovada">Passagem aprovada</option>
+                        <option value="recusada">Passagem recusada</option>
+                    </select>
+
+                    <input type="date" id="filtroData">
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Usuário</th>
+                                <th>Cartão</th>
+                                <th>Valor cobrado</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaViagens">
+                            <!-- O JavaScript preencherá esta tabela futuramente -->
+                        </tbody>
+                    </table>
+
+                    <div class="empty-state" id="viagensVazio">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <h3>Nenhuma viagem encontrada</h3>
+                        <p>O histórico de viagens aparecerá aqui.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
